@@ -10,6 +10,7 @@ kernel void compout(  global Node*  nodes,global Node * prevnodes,int softflag)
     for ( int j = 0; j < nodes[i].numberOfWeights; j++)
        t += nodes[i].weights[j] * prevnodes[j].output;
 
+	t+=0.1;//bias
 	
   if(softflag==0){
 		switch(actflag){
@@ -90,7 +91,7 @@ const int i = get_global_id(0);
 				case 2: delta = nodes[i].output-targets[i]*devrelu(nodes[i].output);break;
 			}
 	}
-	// delta= (nodes[i].output-targets[i])*nodes[i].output*(1-nodes[i].output);
+	
 
 
 	for (int j = 0; j !=nodes[i].numberOfWeights; j++)

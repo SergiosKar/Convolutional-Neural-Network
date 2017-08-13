@@ -200,10 +200,10 @@ void printInput(std::vector<float> &inputs)
 {
 	std::cout << "BELOW IS AN IMAGE" << std::endl;
 	int c = 0;
-	for (int i = 0; i != 28; ++i)
+	for (int i = 0; i != 32; ++i)
 	{
 		std::cout << "    " << std::endl;
-		for (int j = 0; j != 28; ++j)
+		for (int j = 0; j != 32; ++j)
 		{
 			if (inputs[c] > 0)
 				std::cout << 1;

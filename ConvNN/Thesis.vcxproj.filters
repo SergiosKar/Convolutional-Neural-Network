@@ -39,7 +39,7 @@
     <ClCompile Include="readMnist.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="testKernesls.cpp">
+    <ClCompile Include="ReadCifar10.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

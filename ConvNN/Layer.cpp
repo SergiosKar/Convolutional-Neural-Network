@@ -1,6 +1,4 @@
-//
-// Created by sergios on 27/12/2016.
-//
+
 
 #include "Layer.h"
 
@@ -29,7 +27,7 @@ Layer* layer(int numberOfNodes, int numberOfWeights)
 
 		node.output = 0.0;
 		for (int j = 0; j < numberOfWeights; j++)
-			node.weights[j] =  getRandom(-0.3, 0.3); 
+			node.weights[j] =  getRandom(-0.2, 0.2); 
 
 		hidlayer->nodes[i] = node;
 	}
@@ -47,12 +45,12 @@ ConvLayer* convlayer(int numberOfFilters, int filtdim)
 		for (int j = 0; j != filtdim; ++j) {
 
 			for (int k = 0; k != filtdim; ++k)
-				filter.weights[k*filtdim + j] = getRandom(-0.3, 0.3);
+				filter.weights[k*filtdim + j] = getRandom(-0.2, 0.2);
 
 
 		}
 		filter.bias = 0.1;//getRandom(-0.3, 0.3);
-		//initialize all weights =0 and bias =0.5
+		
 
 		layer->filters[i] = filter;
 	}

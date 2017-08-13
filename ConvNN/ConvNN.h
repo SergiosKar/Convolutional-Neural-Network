@@ -1,8 +1,6 @@
 #pragma once
 
-//
-// Created by sergios on 24/12/2016.
-//
+
 
 #ifndef THESIS_CONVNN_H
 #define THESIS_CONVNN_H
@@ -20,13 +18,17 @@ public:
 
 
 	void createConvNN(int numoffilters, int filtdim, int inpdim);
-	void createFullyConnectedNN(std::vector<cl_int> &newNetVec);
+	void createFullyConnectedNN(std::vector<cl_int> &newNetVec, bool onlyFCNN, int inpdim);
 
 
-	void train(std::vector<std::vector<float>> &inputs, std::vector<std::vector<float>> &targets, int epoches);
+	void train(std::vector<std::vector<float>> &inputs, std::vector<std::vector<float>> &targets, std::vector<std::vector<float>> &testinputs, std::vector<float> &testtargets, int epoches);
 	void forward(std::vector<float> &input);
 
-	void trainingAccuracy(std::vector<std::vector<float>> &testinputs, std::vector<float> &testtargets, int num);
+	void forwardFCNN(std::vector<float> &input);
+	void trainFCNN(std::vector<std::vector<float>> &inputs, std::vector<std::vector<float>> &targets, std::vector<std::vector<float>> &testinputs, std::vector<float> &testtargets, int epoches);
+
+
+	void trainingAccuracy(std::vector<std::vector<float>> &testinputs, std::vector<float> &testtargets, int num, bool onlyfcnn);
 
 	void calculateError(std::vector<float> desiredout);
 
@@ -36,8 +38,7 @@ public:
 
 
 private:
-	//std::vector<std::vector<float>> img_inputs;
-	//std::vector<float> targets;
+	
 
 	///cnn
 	cl::Kernel convKern;
@@ -55,12 +56,12 @@ private:
 	cl::Buffer d_targetBuffer;
 	cl::Buffer d_deltasBuffer;
 	cl::Buffer d_rotatedImgBuffer;
-	
+
 
 	ConvLayer convLayer;
 	int filterdim;
 	int pooldim;
-    int featmapdim;
+	int featmapdim;
 	int inputdim;
 
 
@@ -75,24 +76,17 @@ private:
 	cl::Kernel cnnToFcnnKern;
 	cl::Kernel rotate180Kern;
 	cl::Kernel  softmaxKern;;
-	
-	
 
-	
 
 	std::vector<int> h_netVec;
 	std::vector<Layer> h_layers;
 	std::vector<cl::Buffer> d_layersBuffers;
 
 
-
 	void computeOutputofNN();
 
 
-	//others
-	//void printBuffer(cl::Buffer &buf, size_t size);
 	
-
 
 	cl_int err;
 

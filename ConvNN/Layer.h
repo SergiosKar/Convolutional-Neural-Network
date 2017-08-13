@@ -1,7 +1,5 @@
 #pragma once
-//
-// Created by sergios on 24/12/2016.
-//
+
 
 #ifndef LAYER_H
 #define LAYER_H
@@ -13,7 +11,7 @@
 typedef struct Node {
 
 	int numberOfWeights;
-	float weights[1024];
+	float weights[1200];
 	float output;
 	float delta;
 
@@ -21,7 +19,7 @@ typedef struct Node {
 
 typedef struct Filter {
 
-	float weights[25];
+	float weights[49];
 	float bias;
 
 }Filter;
@@ -30,7 +28,7 @@ typedef struct Filter {
 typedef struct Layer {
 
 	int numOfNodes;
-	Node nodes[1024];
+	Node nodes[1200];
 
 }Layer;
 
@@ -51,14 +49,6 @@ ConvLayer* convlayer(int numberOfFilters, int filtdim);
 
 
 
-float inline sigmoid(float x)
-{
-	//To deal with overflow rounding errors and the such
-	if (x < -100)
-		return 0;
-	if (x > 100)
-		return 1;
-	return 1 / (1 + exp(-x));
-}
+
 
 #endif //LAYER_H
